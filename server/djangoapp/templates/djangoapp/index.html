@@ -17,14 +17,18 @@
     <!--Add a nav bar here -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Dealership</a>
-            </div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <div class="input-group">
+                    <div class="input-group"  style="color: white;">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">Dealership</a>
+                        </div>
+                        <input id="username" class="form-control mr-sm-2" type="text" placeholder="User Name:" name="username" required>
+                        <input id="psw" type="password" class="form-control mr-sm-2" placeholder="Password:" name="psw" required>
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
+
                         <a class="btn btn" href="about"  style="color: white;">About Us</a>
-                        <a class="btn btn" href="contact"  style="color: white;">Contact Us</a>
+                        <a class="btn btn" href="contact"  style="color: white;">Contact Us</a> 
                     </div>
                 </li>
             </ul>
