@@ -12,23 +12,33 @@
 </head>
     <body>
         <header class="pb-5">
-        <nav class=" navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class=" navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars &#128663;</a>
-            {% if user.is_authenticated %}
-            <div class="ml-auto">
-                <a class="h6 mr-2 text-light">Welcome, {{user.username}}</a>
-                <a class="btn btn-outline-danger btn-sm" type="button" href="{% url 'djangoapp:logout' %}">Logout</a>
-            </div> 
-            {% else %}
-            <form action="{% url 'djangoapp:login' %}"  method="post" class="ml-auto">
-                {% csrf_token %}<!--Important do not touch-->
-                <input class="" type="text" id="username" name="username" placeholder="UserName:">
-                <input type="password" id="pword" name="pword" placeholder="Password:">
-                <input class="btn btn-outline-success btn-sm" type="submit" value="Login">
-                <a class="btn btn-outline-warning btn-sm" type="submit" href="{% url 'djangoapp:registration' %}">Sign Up</a>
-            </form>
-            {% endif %}
-        </nav>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                          <a class="navbar-brand" href="{% url 'djangoapp:about' %}">Dealership Review</a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Username" name="username" >
+                                    <input type="password" class="form-control" placeholder="Username" name="pword" >
+                                    <button class="btn btn-primary" type="submit">Login</button>
+                                    <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                                </div>
+                            </form>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
     </header>
     <!--Header + Nav-->
     <main role="main" class="d-flex justify-content-center pt-3 ">
@@ -49,9 +59,9 @@
             <label for="car"><b>Select vehicle (if purchased)</b></label>
             <br>
             <select name="car" id="car" class="form-select" required>
-                {% for car in cars%}
+              
                     <option selected value="{{car.make.name}}|{{car.name}}|{{ car.year|date:'Y' }}">{{ car.year|date:"Y" }} {{car.make.name}} {{car.name}}</option>
-                {% endfor %}
+               
             </select>
             
             <br>
@@ -62,12 +72,6 @@
         </form>
     </main>
     <!--Footer and navbar-->
-    <footer class="navbar navbar-expand-md navbar-dark fixed-bottom bg-dark">
-      <div class="container">
-        <a class="btn btn-sm btn-outline-info" type="button" href="{% url 'djangoapp:about' %}">About Us</a>
-        <a class="btn btn-sm btn-outline-info" type="button" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-      </div>
-    </footer>
     </body>
     
     
